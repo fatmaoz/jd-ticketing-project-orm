@@ -1,42 +1,37 @@
 package com.cybertek.implementation;
 
 import com.cybertek.dto.RoleDTO;
-import com.cybertek.dto.UserDTO;
+import com.cybertek.entity.Role;
+import com.cybertek.mapper.RoleMapper;
+import com.cybertek.repository.RoleRepository;
 import com.cybertek.service.RoleService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements RoleService {
+public class RoleServiceImpl implements RoleService {
 
-    @Override
-    public List<RoleDTO> findAll() {
-        return super.findAll();
+
+    private RoleRepository roleRepository;
+    private RoleMapper roleMapper;
+
+    public RoleServiceImpl(RoleRepository roleRepository, RoleMapper roleMapper) {
+        this.roleRepository = roleRepository;
+        this.roleMapper = roleMapper;
     }
 
     @Override
-    public RoleDTO save(RoleDTO object) {
-        return super.save(object.getId(),object);
-    }
-
-    @Override
-    public void update(RoleDTO object) {
-        super.update(object.getId(),object);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        super.deleteById(id);
-    }
-
-    @Override
-    public void delete(RoleDTO object) {
-        super.delete(object);
+    public List<RoleDTO> listAllRoles() {
+        List<Role> list = roleRepository.findAll();
+        return list.stream().map(obj -> {return roleMapper.convertToDto(obj);}).collect(Collectors.toList());
     }
 
     @Override
     public RoleDTO findById(Long id) {
-        return super.findById(id);
+        Role role = roleRepository.findById(id).get();
+        return roleMapper.convertToDto(role);
     }
 }

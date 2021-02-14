@@ -1,5 +1,6 @@
 package com.cybertek.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,16 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "roles")
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
 
     private String description;
 
     @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
     private List<User> users = new ArrayList<>();
-
-
 }

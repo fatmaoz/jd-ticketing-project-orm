@@ -5673,18 +5673,6 @@ Vertical Timeline - by CodyHouse.co
     position: relative;
 }
 
-.mailbox .drop-title:after {
-    content: "";
-    position: absolute;
-    background: url(../../assets/images/background/img5.html) no-repeat;
-    opacity: 0.2;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-}
-
 .mailbox .nav-link {
     border-top: 1px solid #e9ecef;
     padding-top: 15px;
@@ -6972,8 +6960,11 @@ Media Query
     padding: 17px 29px;}
 }
 
-
- 
+.disabled-button{
+    background: #cdcdcd;
+    color: black;
+    border-color: #cdcdcd;
+    cursor: not-allowed !important;
  
 
 
